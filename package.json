@@ -1,0 +1,54 @@
+{
+	"name": "webdirlist",
+	"version": "1.0.0",
+	"main": "./dist/webdirlist.cjs.js",
+	"module": "./dist/webdirlist.esm.js",
+	"bundle": "./dist/webdirlist.js",
+	"types": "./dist/webdirlist.d.ts",
+	"namespace": "webdirlist",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/webdirlist.d.ts",
+				"default": "./dist/webdirlist.esm.js"
+			},
+			"require": {
+				"types": "./dist/webdirlist.d.ts",
+				"default": "./dist/webdirlist.cjs.js"
+			}
+		}
+	},
+	"bin": {
+		"tracedir": "./bin/tracedir.js"
+	},
+	"scripts": {
+		"watch": "rollup -c --watch",
+		"build": "cross-env NODE_ENV=production rollup -c",
+		"watch:tracedir": "rollup --config rollup.config.tracedir.mjs --watch",
+		"build:tracedir": "cross-env NODE_ENV=production rollup --config rollup.config.tracedir.mjs"
+	},
+	"author": "hocti",
+	"license": "MIT",
+	"keywords": [
+		"browser",
+		"directory",
+		"folder",
+		"listing",
+		"directory tree",
+		"ls"
+	],
+	"readme": "README.md",
+	"devDependencies": {
+		"@rollup/plugin-node-resolve": "^15.2.3",
+		"@types/node": "^20.10.4",
+		"cross-env": "^7.0.3",
+		"esbuild": "^0.19.9",
+		"rollup": "^4.9.0",
+		"rollup-plugin-dts": "^6.1.0",
+		"rollup-plugin-esbuild": "^6.1.0",
+		"typescript": "^5.3.3"
+	},
+	"dependencies": {
+		"path-browserify-esm": "^1.0.4"
+	}
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../dist/webdirlist.js"></script>
+    <script>
+        //webdirlist.getInstance().setCWD('http://192.168.1.130:8000/test/');
+        (async()=>{
+
+            await webdirlist.getInstance().loadDir('/node_modules/esbuild');
+            await webdirlist.getInstance().loadDir('/node_modules/ajv');
+            const result=await webdirlist.getInstance().getFileList('/node_modules',true);
+            console.log(result)
+        })()
+            </script>
+</body>
+</html>

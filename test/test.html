@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        import webdirlist from '/dist/webdirlist.esm.js';
+        webdirlist.getInstance().setCWD()
+        
+        await webdirlist.getInstance().loadDir('/node_modules/esbuild');
+        await webdirlist.getInstance().loadDir('/node_modules/ms');
+        console.log(await webdirlist.getInstance().getFileList('/node_modules'))
+
+        await webdirlist.getInstance().loadDir('./');
+        console.log(await webdirlist.getInstance().getFileList('FirenScene'))
+        
+        await webdirlist.getInstance().loadDir('media');
+        console.log(await webdirlist.getInstance().getFileList('media/FreezeScene'))
+        console.log(await webdirlist.getInstance().getFileList('./media/FreezeScene'))
+        console.log(await webdirlist.getInstance().getFileList('../test/media/FreezeScene'))
+        console.log(await webdirlist.getInstance().getFileList('/test/media/FreezeScene'))
+    </script>
+</body>
+</html>

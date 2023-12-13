@@ -1,0 +1,10 @@
+#! /usr/bin/env node
+"use strict";var O=Object.create;var y=Object.defineProperty;var S=Object.getOwnPropertyDescriptor;var _=Object.getOwnPropertyNames;var j=Object.getPrototypeOf,E=Object.prototype.hasOwnProperty;var D=(e,t,n,r)=>{if(t&&typeof t=="object"||typeof t=="function")for(let s of _(t))!E.call(e,s)&&s!==n&&y(e,s,{get:()=>t[s],enumerable:!(r=S(t,s))||r.enumerable});return e};var m=(e,t,n)=>(n=e!=null?O(j(e)):{},D(t||!e||!e.__esModule?y(n,"default",{value:e,enumerable:!0}):n,e));/*!
+ * webdirlist - v1.0.0
+ * By Hocti
+ * Compiled Wed, 13 Dec 2023 19:08:23 UTC
+ *
+ * webdirlist is licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license
+ */var I=require("node:fs");function M(e){var t=Object.create(null);return e&&Object.keys(e).forEach(function(n){if(n!=="default"){var r=Object.getOwnPropertyDescriptor(e,n);Object.defineProperty(t,n,r.get?r:{enumerable:!0,get:function(){return e[n]}})}}),t.default=e,Object.freeze(t)}var $=M(I);typeof process<"u"&&process.versions!=null&&process.versions.node!=null;const z=["fla","psd","ai"],P=["files.txt","desktop.ini",".DS_Store","thumb.db"],q=["temp",".git",".svn","__MACOSX"];async function w(e,t,n=!1,r,s,l,u,a=!1){const f=await import("node:fs"),d=await import("node:path");if(!f.existsSync(t))throw new Error("folder not found");let p=[];const x=f.readdirSync(t);for(let i of x){const o=d.resolve(t,i);if(f.lstatSync(o).isDirectory()){if(n&&!u?.includes(i)&&!q.includes(i)){const g=await w(e,o,!0,r,s,l,u,a);for(let c of g)p.push(c)}}else{const g=d.relative(e,o),c=d.parse(o).ext.substring(1);if(r&&!r.includes(c)||s?.includes(c)||l?.includes(i)||z.includes(c)||P.includes(i))continue;let v=g.replace(/\\/g,"/");if(a){const b=f.statSync(o),[h,F]=[b.size,Math.floor(b.mtimeMs/1e3)];v=`${v}	${h}	${F}`}p.push(v)}}return p}const A=async function(e,t){const{subfolder:n=!0,includedExt:r,excludedExt:s,ignoreFiles:l,ignoreFolder:u,detail:a=!1}=t;return w(e,e,n,r,s,l,u,a)};process.argv[2]&&(async()=>{const e=(await A(process.argv[2],{subfolder:!0,detail:!0})).join(`
+`);let t=process.argv[2]+"/files.txt";process.argv[3]&&(t=process.argv[3]),$.writeFile(t,e,n=>!0)})();

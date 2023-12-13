@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script type="module">
+        import path from 'https://cdn.jsdelivr.net/npm/path-browserify-esm/index.esm.js';
+        console.log(path.join('asd','zxc','../qwe/rty'))
+        path.setCWD('http://192.168.1.1')
+        console.log(path.resolve('asd','zxc','../qwe/rty'))
+
+        console.log(path.parse(window.location.href))
+    </script>
+</body>
+</html>
