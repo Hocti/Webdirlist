@@ -1,6 +1,6 @@
 {
 	"name": "webdirlist",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"main": "./dist/webdirlist.cjs.js",
 	"module": "./dist/webdirlist.esm.js",
 	"bundle": "./dist/webdirlist.js",

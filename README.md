@@ -1,4 +1,4 @@
-# Webdirlist
+# Webdirlist[![npm version](https://img.shields.io/npm/v/webdirlist.svg?logo=npm)](https://www.npmjs.com/package/webdirlist)
 
 webdirlist is a versatile library designed to list files in a directory. It can be used in both Node.js and browser environments. In static hosting scenarios, it prepares a comprehensive listing of all files within a directory in a `files.txt` file. 
 
@@ -13,6 +13,10 @@ Install the package using npm:
 
 ```sh
 npm install webdirlist -g
+
+then
+
+tracedir <blank for current fodler, or input the fodler path>
 ```
 
 #### CDN Install
@@ -35,6 +39,8 @@ Run the `tracedir` command with npx:
 
 ```sh
 npx tracedir <folder-path>
+
+e.g.
 npx tracedir .\node_modules\esbuild\
 ```
 
@@ -53,14 +59,14 @@ README.md	175	1702310819
 ### In the Browser
 
 ```javascript
-import webfs from 'webdirlist';
+import webdirlist from 'webdirlist';
 
 //optional, set the current folder, leave blank=auto
-webfs.getInstance().setCWD();
+webdirlist.getInstance().setCWD();
 
 // Async function to get file list
-webfs.getInstance().loadDir('node_modules/esbuild').then(async()=>{
-    const files=await webfs.getInstance().getFileList('node_modules/esbuild/lib',{
+webdirlist.getInstance().loadDir('node_modules/esbuild').then(async()=>{
+    const files=await webdirlist.getInstance().getFileList('node_modules/esbuild/lib',{
         subfolder:true,//optional,default true
         includedExt:['json','png','mp3'],//optional
         excludedExt:['txt'],//optional
@@ -74,7 +80,7 @@ webfs.getInstance().loadDir('node_modules/esbuild').then(async()=>{
 
 ### In Node.js
 
-don't need to read **files.txt** in advance , just run **webfs.getInstance().getFileList** directly 
+don't need to read **files.txt** in advance , just run **webdirlist.getInstance().getFileList** directly 
 
 ## Contributing
 
