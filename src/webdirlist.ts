@@ -26,6 +26,7 @@ export default class webdirlist {
 	static getInstance(): webdirlist {
 		if (!webdirlist.instance) {
 			webdirlist.instance = new webdirlist();
+			webdirlist.instance.setCWD();
 		}
 		return webdirlist.instance;
 	}

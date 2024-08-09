@@ -12,11 +12,13 @@ webdirlist is a versatile library designed to list files in a directory. It can 
 Install the package using npm:
 
 ```sh
+npm install webdirlist
+```
+
+Install the package in global, to use **tracedir**  anywhere:
+
+```sh
 npm install webdirlist -g
-
-then
-
-tracedir <blank for current fodler, or input the fodler path>
 ```
 
 #### CDN Install
@@ -38,13 +40,16 @@ or
 Run the `tracedir` command with npx:
 
 ```sh
-npx tracedir <folder-path>
+//after npm install in global:
+tracedir <blank for current path, or input the folder path>
+tracedir .\node_modules\esbuild\
+tracedir 
 
-e.g.
+//in the package root folder:
 npx tracedir .\node_modules\esbuild\
 ```
 
-This will generate a `files.txt` in the specified folder.
+This will generate a `files.txt` in the specified folder. The format are filepath,size,timestamp
 
 ```
 bin/esbuild	9180	1702310819
@@ -80,7 +85,7 @@ webdirlist.getInstance().loadDir('node_modules/esbuild').then(async()=>{
 
 ### In Node.js
 
-don't need to read **files.txt** in advance , just run **webdirlist.getInstance().getFileList** directly 
+don't need to use **loadDir** to read **files.txt** in advance , just run **webdirlist.getInstance().getFileList** directly 
 
 ## Contributing
 

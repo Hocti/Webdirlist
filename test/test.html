@@ -7,11 +7,12 @@
 </head>
 <body>
     <script type="module">
-        import webdirlist from '/dist/webdirlist.esm.js';
-        webdirlist.getInstance().setCWD()
+        import webdirlist,{webPath} from '/dist/webdirlist.esm.js';
+        //webdirlist.getInstance().setCWD()
+        //console.log(webPath)
         
         await webdirlist.getInstance().loadDir('/node_modules/esbuild');
-        await webdirlist.getInstance().loadDir('/node_modules/ms');
+        await webdirlist.getInstance().loadDir('/node_modules/debug');
         console.log(await webdirlist.getInstance().getFileList('/node_modules'))
 
         await webdirlist.getInstance().loadDir('./');

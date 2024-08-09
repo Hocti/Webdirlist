@@ -12,7 +12,7 @@
         (async()=>{
 
             await webdirlist.getInstance().loadDir('/node_modules/esbuild');
-            await webdirlist.getInstance().loadDir('/node_modules/ajv');
+            await webdirlist.getInstance().loadDir('/node_modules/debug');
             const result=await webdirlist.getInstance().getFileList('/node_modules',true);
             console.log(result)
         })()

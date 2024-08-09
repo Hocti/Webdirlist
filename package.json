@@ -1,6 +1,6 @@
 {
 	"name": "webdirlist",
-	"version": "1.0.2",
+	"version": "1.0.4",
 	"main": "./dist/webdirlist.cjs.js",
 	"module": "./dist/webdirlist.esm.js",
 	"bundle": "./dist/webdirlist.js",
@@ -50,5 +50,10 @@
 	},
 	"dependencies": {
 		"path-browserify-esm": "^1.0.4"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/Hocti/Webdirlist.git"
+	},
+	"bugs": "https://github.com/Hocti/Webdirlist/issues"
 }
