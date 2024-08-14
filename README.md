@@ -35,7 +35,7 @@ or
 
 ## Usage
 
-#### Generating files.txt
+#### Generating `files.txt`
 
 Run the `tracedir` command with npx:
 
@@ -50,6 +50,7 @@ npx tracedir .\node_modules\esbuild\
 ```
 
 This will generate a `files.txt` in the specified folder. The format are filepath,size,timestamp
+`.DS_Store,thumb.db,__MACOSX,.psd` would be ignored by default.
 
 ```
 bin/esbuild	9180	1702310819
@@ -86,6 +87,34 @@ webdirlist.getInstance().loadDir('node_modules/esbuild').then(async()=>{
 ### In Node.js
 
 don't need to use **loadDir** to read **files.txt** in advance , just run **webdirlist.getInstance().getFileList** directly 
+
+```javascript
+import webdirlist from 'webdirlist';
+
+// Async function to get file list
+const files=await webdirlist.getInstance().getFileList('node_modules/esbuild/lib',{
+    subfolder:true,//optional,default true
+    includedExt:['json','png','mp3'],//optional
+    excludedExt:['txt'],//optional
+    ignoreFiles:['unuse.json'],//optional
+    ignoreFolder:['temp'],//optional
+});
+// list of filenames in string array
+//['lib/main.d.ts','lib/main.js']
+```
+
+### node.js's `path` In the Browser
+
+wrapped [path-browserify-esm](https://www.npmjs.com/package/path-browserify-esm) as `webPath`
+
+```javascript
+import webdirlist,{webPath} from 'webdirlist';
+
+console.log(webPath.join('asd','zxc','../qwe/rty'));//  "asd/qwe/rty"
+webPath.setCWD('http://192.168.1.1')
+console.log(webPath.resolve('asd','zxc','../qwe/rty'));//   "http:/192.168.1.1/asd/qwe/rty"
+
+```
 
 ## Contributing
 

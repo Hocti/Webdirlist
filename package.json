@@ -1,6 +1,6 @@
 {
 	"name": "webdirlist",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"main": "./dist/webdirlist.cjs.js",
 	"module": "./dist/webdirlist.esm.js",
 	"bundle": "./dist/webdirlist.js",
@@ -37,7 +37,6 @@
 		"directory tree",
 		"ls"
 	],
-	"readme": "README.md",
 	"devDependencies": {
 		"@rollup/plugin-node-resolve": "^15.2.3",
 		"@types/node": "^20.10.4",
@@ -49,7 +48,7 @@
 		"typescript": "^5.3.3"
 	},
 	"dependencies": {
-		"path-browserify-esm": "^1.0.4"
+		"path-browserify-esm": "^1.0.6"
 	},
 	"repository": {
 		"type": "git",

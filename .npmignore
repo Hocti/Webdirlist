@@ -1,1 +1,5 @@
 test
+files.txt
+rollup.config.*
+tsconfig.json
+src/
