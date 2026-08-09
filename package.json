@@ -1,58 +1,60 @@
 {
 	"name": "webdirlist",
-	"version": "1.0.5",
-	"main": "./dist/webdirlist.cjs.js",
-	"module": "./dist/webdirlist.esm.js",
-	"bundle": "./dist/webdirlist.js",
-	"types": "./dist/webdirlist.d.ts",
-	"namespace": "webdirlist",
+	"version": "3.0.0",
+	"description": "List a directory tree the same way in a browser and in node — a generated files.txt on the web, live fs in node",
+	"type": "module",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"//exports": "`.` is browser-safe and must stay that way — nothing reachable from it may import node:*. `./node` deliberately has no `development` condition: it is imported by build tooling (vite configs, scripts) that node resolves itself, and those must get the built JS rather than TypeScript source.",
 	"exports": {
 		".": {
-			"import": {
-				"types": "./dist/webdirlist.d.ts",
-				"default": "./dist/webdirlist.esm.js"
-			},
-			"require": {
-				"types": "./dist/webdirlist.d.ts",
-				"default": "./dist/webdirlist.cjs.js"
-			}
-		}
+			"types": "./dist/index.d.ts",
+			"development": "./src/index.ts",
+			"import": "./dist/index.js"
+		},
+		"./node": {
+			"types": "./dist/node.d.ts",
+			"import": "./dist/node.js"
+		},
+		"./package.json": "./package.json"
 	},
 	"bin": {
-		"tracedir": "./bin/tracedir.js"
+		"tracedir": "./bin/tracedir.mjs"
 	},
 	"scripts": {
-		"watch": "rollup -c --watch",
-		"build": "cross-env NODE_ENV=production rollup -c",
-		"watch:tracedir": "rollup --config rollup.config.tracedir.mjs --watch",
-		"build:tracedir": "cross-env NODE_ENV=production rollup --config rollup.config.tracedir.mjs"
+		"build": "tsc -p tsconfig.build.json",
+		"test": "vitest run --passWithNoTests",
+		"typecheck": "tsc --noEmit -p tsconfig.json",
+		"clean": "rm -rf dist .turbo"
 	},
-	"author": "hocti",
-	"license": "MIT",
 	"keywords": [
 		"browser",
 		"directory",
 		"folder",
 		"listing",
 		"directory tree",
+		"manifest",
+		"assets",
 		"ls"
 	],
+	"author": "hocti",
+	"license": "MIT",
+	"files": [
+		"dist",
+		"bin",
+		"LICENSE",
+		"README.md",
+		"package.json"
+	],
+	"//devDependencies": "Zero runtime dependencies. path-browserify-esm is gone — the library only ever needed posix path arithmetic on its own relative paths, which is src/paths.ts. No @mono/configs either, unlike most packages here: `pnpm sync-configs` *copies* the shared config in, and @mono/configs itself imports this package (assetsDir.mjs), so declaring it would be a build cycle.",
 	"devDependencies": {
-		"@rollup/plugin-node-resolve": "^15.2.3",
-		"@types/node": "^20.10.4",
-		"cross-env": "^7.0.3",
-		"esbuild": "^0.19.9",
-		"rollup": "^4.9.0",
-		"rollup-plugin-dts": "^6.1.0",
-		"rollup-plugin-esbuild": "^6.1.0",
-		"typescript": "^5.3.3"
-	},
-	"dependencies": {
-		"path-browserify-esm": "^1.0.6"
+		"@types/node": "^26",
+		"typescript": "latest",
+		"vitest": "^4.1.10"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/Hocti/Webdirlist.git"
+		"url": "git+https://github.com/Hocti/Webdirlist.git"
 	},
 	"bugs": "https://github.com/Hocti/Webdirlist/issues"
 }
