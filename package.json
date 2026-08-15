@@ -48,7 +48,7 @@
 	],
 	"//devDependencies": "Zero runtime dependencies. path-browserify-esm is gone — the library only ever needed posix path arithmetic on its own relative paths, which is src/paths.ts. No @mono/configs either, unlike most packages here: `pnpm sync-configs` *copies* the shared config in, and @mono/configs itself imports this package (assetsDir.mjs), so declaring it would be a build cycle.",
 	"devDependencies": {
-		"@types/node": "^26",
+		"@types/node": "latest",
 		"typescript": "latest",
 		"vitest": "^4.1.10"
 	},
