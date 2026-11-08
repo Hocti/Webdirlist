@@ -58,7 +58,15 @@ export class NodeDirList extends SnapshotDirList {
 					continue;
 				}
 				if (!entry.isFile()) continue; // sockets, fifos, dangling symlinks
-				const info = await stat(absolute);
+				let info;
+				try {
+					info = await stat(absolute);
+				} catch (err) {
+					// Gone between `readdir` and here — an editor's swap file, a save in progress.
+					// One vanished file must not fail the whole listing.
+					if ((err as NodeJS.ErrnoException).code === 'ENOENT') continue;
+					throw err;
+				}
 				out.push(makeEntry(toListingPath(this.root, absolute), info.size, Math.floor(info.mtimeMs / 1000)));
 			}
 		};
